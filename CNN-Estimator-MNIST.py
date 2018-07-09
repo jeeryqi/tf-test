@@ -17,14 +17,16 @@ def cnn_model_fn(features, labels, mode):
   # MNIST images are 28x28 pixels, and have one color channel
 '''输入层
 
-layers用于为二维图像数据创建卷积层和合并层的模块中的方法预期输入张量具有默认的形状 。此行为可以使用参数进行更改; 定义如下：[batch_size, image_height, image_width, channels]data_format
+layers用于为二维图像数据创建卷积层和合并层的模块中的方法预期输入张量具有默认的形状 。此行为可以使用参数进行更改; 定义如下：
+[batch_size, image_height, image_width, channels]data_format
 
 batch_size。在训练期间执行梯度下降时要使用的示例子集的大小。
 image_height。示例图像的高度。
 image_width。示例图像的宽度。
 channels。示例图像中的颜色通道数量。对于彩色图像，通道数量是3（红色，绿色，蓝色）。对于单色图像，只有1个通道（黑色）。
 image_height。示例图像的高度。
-data_format。一个字符串，其中一个channels_last（默认）或channels_first。 channels_last对应于具有形状的输入 (batch, ..., channels)而channels_first对应于具有形状的输入(batch, channels, ...)。
+data_format。一个字符串，其中一个channels_last（默认）或channels_first。 channels_last对应于具有形状的输入 (batch, ..., channels)
+而channels_first对应于具有形状的输入(batch, channels, ...)。
 这里，我们的MNIST数据集由单色的28x28像素图像组成，因此我们输入图层的所需形状为。[batch_size, 28, 28, 1]
 
 要将我们的输入特征映射（features）转换为这种形状，我们可以执行以下reshape操作：'''
@@ -67,7 +69,8 @@ image_width, channels]input_layer[batch_size, 28, 28, 1]
 '''汇集层＃1
 接下来，我们将第一个池化层连接到刚刚创建的卷积层。我们可以使用该max_pooling2d()方法layers构造一个层，该层使用2x2过滤器和2的步
 幅执行最大池：
-再次，inputs指定输入张量，形状为 。这里，我们的输入张量是第一个卷积层的输出，其形状为。[batch_size, image_height, image_width, channels]conv1[batch_size, 28, 28, 32]
+再次，inputs指定输入张量，形状为 。这里，我们的输入张量是第一个卷积层的输出，其形状为。[batch_size, image_height, image_width, channels]
+conv1[batch_size, 28, 28, 32]
 
 注意：与之相反conv2d()，max_pooling2d()将接受传递参数时 的形状。[batch_size, channels, image_height, image_width]data_format=channels_first
 该pool_size参数指定了最大池过滤器的大小 （这里）。如果两个维度具有相同的值，则可以改为指定单个整数（例如， ）。[height, width]
